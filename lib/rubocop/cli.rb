@@ -21,6 +21,7 @@ module RuboCop
       @options, paths = Options.new.parse(args)
       act_on_options
 
+      RuboCop.init_plugins(@options)
       runner = Runner.new(@options, @config_store)
       trap_interrupt(runner)
       all_passed = runner.run(paths)

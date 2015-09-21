@@ -349,3 +349,5 @@ require 'rubocop/cli'
 require 'rubocop/options'
 require 'rubocop/warning'
 require 'rubocop/remote_config'
+require 'rubocop/plugins'
+RuboCop.load_plugins
