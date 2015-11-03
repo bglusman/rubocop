@@ -17,8 +17,13 @@ module RuboCop
     seen = {}
 
     require 'rubygems' unless defined? Gem
+    method = if Gem.respond_to?(:find_latest_files)
+               :find_latest_files
+             else
+               :find_files
+             end
 
-    Gem.find_latest_files('*_cop.rb').each do |plugin_path|
+    Gem.public_send(method, '*_cop.rb').each do |plugin_path|
       name = File.basename(plugin_path, '_cop.rb')
 
       next if seen[name]
